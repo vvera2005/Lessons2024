@@ -1,0 +1,17 @@
+- Write a Dart function called `performOperation` that takes a callback function as a parameter. The callback function should define some operation(let's have calculator example and pass these function as a parameter), and `performOperation` should call this callback and print the result.
+e.g.:
+	...
+	void performOperation(int Function() operation) {
+	  int result = operation();
+	  print('result: $result');
+	}
+	...
+
+- Write a Dart function called `printMessage` that takes a callback function as a parameter. The callback function should define a message, and `printMessage` should call this callback to obtain the message and then print it. You can use 2 examples of functions that print some String and as a callback execute into `printMessage`.
+
+enum Weeks { mon }
+Weeks getWeek(int day) {}
+void getWorkingDay(Weeks Function(int day) week) {}
+// Write a dart function that takes a day(integer - user input) and returns the week(enum) by day.
+// Then write a dart function which checks a week for working/non-workings days and print "Today is working(non-working) day"(if it is Sat and Sunday it's not working day). Consider to write with callback. Give above function as a parameter of this function and execute.
+// NOTE: you can use functions above and write a logic inside them. 

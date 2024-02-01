@@ -1,0 +1,34 @@
+[
+    {
+        "firstname": "John",
+        "lastname": "Doe",
+        "email": "johndoe@example.com",
+        "birthDate": "1973-01-22"
+    },
+    {
+        "id": 1,
+        "firstname": "Jane",
+        "email": "janesmith@example.com",
+        "birthDate": "1983-02-22"
+    },
+    {
+        "id": 2,
+        "firstname": "Bob",
+        "lastname": "Johnson",
+        "email": "bobjohnson@example.com",
+        "birthDate": "1974-11-12"
+    },
+    {
+        "firstname": "Emma",
+        "lastname": "Watrson",
+        "email": "emma.watson@gmail.com",
+        "birthdate": "1985-12-06"
+    },
+    {
+        "id": 3,
+        "firstname": "Nona",
+        "lastname": "Smith",
+        "email": "nonaaaa@gmail.com",
+        "birthdate": "1995-02-06"
+    }
+]

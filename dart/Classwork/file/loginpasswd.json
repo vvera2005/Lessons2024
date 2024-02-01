@@ -1,0 +1,14 @@
+[
+    {
+        "login": "John",
+        "passward": "john121"
+    },
+    {
+        "login": "Nana",
+        "passward": "nan1235"
+    },
+    {
+        "login" :"Max",
+        "passward":"1236"
+    }
+]
