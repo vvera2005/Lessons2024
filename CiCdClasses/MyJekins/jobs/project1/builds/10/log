@@ -1,0 +1,15 @@
+Started by user [8mha:////4ESegEp43yjx5vnojTEIghN11H53KUqXsSvxmnsPVyUoAAAAlh+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAz+EgYu/dLi1CL9stSiRABR9BCNvwAAAA==[0mVera Aleksanyan
+Running as SYSTEM
+Building in workspace /var/jenkins_home/workspace/project1
+[project1] $ /bin/sh -xe /tmp/jenkins4787402118056239237.sh
++ echo Hello world
+Hello world
++ sleep 20
++ echo Bye-bye
+Bye-bye
++ whoami
+jenkins
++ pwd
+/var/jenkins_home/workspace/project1
++ sleep 5
+Finished: SUCCESS
