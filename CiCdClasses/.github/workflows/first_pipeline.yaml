@@ -1,0 +1,7 @@
+name: first pipeline
+  on: push
+  jobs:
+    my-jobs
+    steps:
+      name: Echo text
+      run: echo "Hello world"
