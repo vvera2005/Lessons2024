@@ -1,0 +1,21 @@
+version: "3.8"
+services:
+  jenkins:
+    build: ./myjenkins
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+    privileged: true
+    volumes:
+      - /home/vera/programming/Lessons2024/CiCdClasses/MyJekins/:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock  # Mount Docker socket
+  agent:
+    build: ./myJenkinsAgent
+    container_name: agent1
+    ports:
+      - "22:22"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock  # Mount Docker socket
+    environment:
+      - JENKINS_AGENT_SSH_PUBKEY=ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCdrJJgxeOf+c/yOUCoJaYjF4zHPSg13SYEihs/Vy3UgsJcRNtbPxXspdyZcd5Pn109WGfwawJxFVSOqWr4HYds56IVIofLhvNVSmnnVbuZ1ypScRc0JJZxL2gfEBUNBqt0wgtOadRPJuIM+4BEW5SWb3FU3bDULd/mXniC4EupJnSlz2h3+cl83ukyTDRLuYhLyFZwZu/cDhtVAls1P4OWO/O+GmSMOZlaXcNF+PjwkU/Y/RcdnTanRpgo/CulqxHjHLgHxzmVIeINWvhma9eXN/LfLdcJXACIp3ac+vYzf9RmTtkDIKhQmvP3bOiI9Wa4RRFJgSZRlPQBKGx1GXtnCv4ik+/hoXQ9j+kKNY90gNqP7BxmD8C8kddN7wPJYS0ApA5WE8Zke36wcaLKLfeTld/pJa4bElqTCqoOzkNDb77oTmyQTQllkqDQ+FwYMv/NPryO3K2W/qsYAADl4D6wcEcUiq4vLWgdCE6TguTrgwn9M4AVm/U/RdlnrGDecO0= vera@vera-VivoBook-ASUSLaptop-X513EAN-X513EA
+
