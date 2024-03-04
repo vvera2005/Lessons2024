@@ -1,0 +1,1 @@
+Create a stateful widget to organize a countdown timer (for example, 60 seconds). When the application starts, create a text widget in the center of the screen that accepts a variable (seconds) specified in it. Once the app goes into the background we need to pause the timer, then once resumed it should continue to decrease.

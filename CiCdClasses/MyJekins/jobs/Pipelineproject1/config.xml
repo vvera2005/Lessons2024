@@ -11,18 +11,38 @@
   </actions>
   <description>This is pipeline code</description>
   <keepDependencies>false</keepDependencies>
-  <properties/>
+  <properties>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>dirname</name>
+          <description>change default value</description>
+          <defaultValue>lpl</defaultValue>
+          <trim>true</trim>
+        </hudson.model.StringParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+  </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@3853.vb_a_490d892963">
     <script>pipeline {
-    agent any 
+    agent any
+
     stages {
-        stage(&apos;Stage 1&apos;) {
+        stage(&apos;Hello&apos;) {
             steps {
-                echo &apos;Hello world!&apos; 
+                echo &apos;Hello World&apos;
+
+            }
+        }
+        stage(&apos;builld&apos;){
+            steps{
+                echo &quot;kkk&quot;
+                sh &quot;mkdir ${dirname} &quot;
             }
         }
     }
-}</script>
+}
+</script>
     <sandbox>true</sandbox>
   </definition>
   <triggers/>

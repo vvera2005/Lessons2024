@@ -1,40 +1,22 @@
+import 'package:first/db/preferences.dart';
+import 'package:first/main.dart';
+import 'package:first/route_generator.dart';
+import 'package:first/pages/sign_in.dart';
+import 'package:first/pages/sign_up.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
-  runApp(
-    MaterialApp(
-      home: HomePage(),
-      debugShowCheckedModeBanner: false,
-    ),
-  );
+Future<void> _setupServices() async {
+  final SharedPreferences preferences = await SharedPreferences.getInstance();
+  GetIt.instance.registerFactory(() => PreferencService(preferences));
 }
 
-class HomePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 139, 110, 72),
-        title: const Text('Home Page'),
-        centerTitle: true,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () {
-            print('Back button pressed');
-          },
-        ),
-        actions: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.navigate_next),
-            onPressed: () {
-              print('Next button pressed');
-            },
-          ),
-        ],
-      ),
-      body: Center(
-        child: Text("Hompage body"),
-      ),
-    );
-  }
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await _setupServices();
+  runApp(const MaterialApp(
+    initialRoute: "/signin",
+    onGenerateRoute: RouteGenerator.generateRoute,
+  ));
 }
