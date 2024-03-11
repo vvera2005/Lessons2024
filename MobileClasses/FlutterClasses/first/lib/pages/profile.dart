@@ -1,15 +1,28 @@
 import 'package:first/button_widget.dart';
+import 'package:first/db/preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class Profile extends StatefulWidget {
-  const Profile({super.key});
-
+  const Profile(this.preferences, {super.key});
+  final PreferencService preferences;
   @override
   State<Profile> createState() => _ProfileState();
 }
 
 class _ProfileState extends State<Profile> {
+  late String username;
+  late String phoneNumber;
+  late String email;
+  @override
+  void initState() {
+    username = widget.preferences.getUsername() ?? "Username";
+    email = widget.preferences.getEmail() ?? "test@mail.ru";
+    phoneNumber = widget.preferences.getPhoneNumber() ?? "+37499999999";
+
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,17 +34,15 @@ class _ProfileState extends State<Profile> {
                 height: 104,
               ),
               SizedBox(
-                height: 196,
-                width: 203,
                 child: Column(
                   children: <Widget>[
                     Image.asset("assets/images/Img_Profile.png"),
                     const SizedBox(
                       height: 12,
                     ),
-                    const Text("Username",
-                        style:
-                            TextStyle(color: Color(0xff525464), fontSize: 24)),
+                    Text(username,
+                        style: const TextStyle(
+                            color: Color(0xff525464), fontSize: 24)),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: <Widget>[
@@ -48,7 +59,9 @@ class _ProfileState extends State<Profile> {
                 ),
               ),
               TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).pushNamed("/editProfile");
+                  },
                   child: const Text(
                     "Edit",
                     style: TextStyle(fontSize: 16, color: Color(0xffFFB19D)),
@@ -95,8 +108,6 @@ class _ProfileState extends State<Profile> {
                     height: 80,
                     width: 315,
                     child: Row(
-                      // mainAxisAlignment: MainAxisAlignment.spaceAround,
-
                       children: <Widget>[
                         const SizedBox(
                           width: 27,
@@ -109,15 +120,15 @@ class _ProfileState extends State<Profile> {
                         const SizedBox(
                           width: 23,
                         ),
-                        const Column(
+                        Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
                               Text("Phone number",
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     color: Color(0xffFFFFFF),
                                   )),
-                              Text("+3788888888",
-                                  style: TextStyle(
+                              Text(phoneNumber,
+                                  style: const TextStyle(
                                     color: Color(0xffFFFFFF),
                                   )),
                             ]),
@@ -146,15 +157,15 @@ class _ProfileState extends State<Profile> {
                         const SizedBox(
                           width: 23,
                         ),
-                        const Column(
+                        Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
-                              Text("Phone number",
+                              const Text("email",
                                   style: TextStyle(
                                     color: Color(0xffFFFFFF),
                                   )),
-                              Text("+3788888888",
-                                  style: TextStyle(
+                              Text(email,
+                                  style: const TextStyle(
                                     color: Color(0xffFFFFFF),
                                   )),
                             ]),
@@ -186,11 +197,11 @@ class _ProfileState extends State<Profile> {
                         const Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
-                              Text("Phone number",
+                              Text("Work done",
                                   style: TextStyle(
                                     color: Color(0xffFFFFFF),
                                   )),
-                              Text("+3788888888",
+                              Text("0",
                                   style: TextStyle(
                                     color: Color(0xffFFFFFF),
                                   )),

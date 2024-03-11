@@ -1,5 +1,5 @@
 import 'package:first/db/preferences.dart';
-import 'package:first/main.dart';
+import 'package:first/pages/edit_profile.dart';
 import 'package:first/pages/profile.dart';
 import 'package:first/pages/sign_in.dart';
 import 'package:first/pages/sign_up.dart';
@@ -13,9 +13,13 @@ class RouteGenerator {
         return MaterialPageRoute(
             builder: (_) => Signin(GetIt.instance.get<PreferencService>()));
       case '/signup':
-        return MaterialPageRoute(builder: (_) => Signup());
+        return MaterialPageRoute(
+            builder: (_) => Signup(GetIt.instance.get<PreferencService>()));
       case '/profile':
-        return MaterialPageRoute(builder: (_) => Profile());
+        return MaterialPageRoute(
+            builder: (_) => Profile(GetIt.instance.get<PreferencService>()));
+      case '/editProfile':
+        return MaterialPageRoute(builder: (_) => EditProfile());
       default:
         return _errorRoute();
     }

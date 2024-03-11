@@ -5,8 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class Signin extends StatefulWidget {
-  const Signin(this.preferences, {this.darkMode = false, super.key});
-  final bool darkMode;
+  const Signin(this.preferences, {super.key});
   final PreferencService preferences;
   @override
   State<Signin> createState() => _SigninState();
@@ -15,16 +14,15 @@ class Signin extends StatefulWidget {
 class _SigninState extends State<Signin> {
   Color color = Colors.white;
   bool darkMode = false;
+  String? username;
+  String? passward;
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
   @override
   void initState() {
-    // TODO: implement initState
+    username = widget.preferences.getUsername();
+    passward = widget.preferences.getPassward();
     super.initState();
-    darkMode = widget.preferences.getMode() ?? false;
-    if (darkMode) {
-      color = Colors.black;
-    } else {
-      color = Colors.white;
-    }
   }
 
   @override
@@ -34,18 +32,6 @@ class _SigninState extends State<Signin> {
       appBar: AppBar(
         title: const Text("Sign in"),
         centerTitle: true,
-        leading: IconButton(
-            onPressed: () async {
-              widget.preferences.setmode(!darkMode);
-              setState(() {
-                if (darkMode == true) {
-                  color = Colors.black;
-                } else {
-                  color = Colors.white;
-                }
-              });
-            },
-            icon: const Icon(Icons.sunny)),
       ),
       body: Center(
         child: SingleChildScrollView(
@@ -57,18 +43,32 @@ class _SigninState extends State<Signin> {
             ),
             const SizedBox(height: 54),
             SizedBox(
-              height: 466,
               width: 315,
               child: Column(
                 children: <Widget>[
-                  const TextFieldWidget(
+                  TextFieldWidget(
                     hintText: "Username",
+                    controller: _usernameController,
+                    validator: (String? value) {
+                      if (value != username) {
+                        return "Invalid username";
+                      }
+                      return null;
+                    },
                   ),
                   const SizedBox(
                     height: 12,
                   ),
-                  const TextFieldWidget(
-                    hintText: "Passward",
+                  TextFieldWidget(
+                    hintText: "Password",
+                    obscureText: true,
+                    controller: _passwordController,
+                    validator: (String? value) {
+                      if (value != passward) {
+                        return "Invalis password";
+                      }
+                      return null;
+                    },
                   ),
                   const Row(
                     mainAxisAlignment: MainAxisAlignment.end,
@@ -87,7 +87,10 @@ class _SigninState extends State<Signin> {
                   ),
                   ButtonWidget(
                     monTap: () {
-                      Navigator.of(context).pushNamed('/profile');
+                      if (_usernameController.text == username &&
+                          _passwordController.text == passward) {
+                        Navigator.of(context).pushNamed('/profile');
+                      }
                     },
                   ),
                   const SizedBox(height: 12),
