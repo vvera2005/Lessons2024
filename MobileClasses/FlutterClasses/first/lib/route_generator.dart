@@ -19,7 +19,9 @@ class RouteGenerator {
         return MaterialPageRoute(
             builder: (_) => Profile(GetIt.instance.get<PreferencService>()));
       case '/editProfile':
-        return MaterialPageRoute(builder: (_) => EditProfile());
+        return MaterialPageRoute(
+            builder: (_) =>
+                EditProfile(GetIt.instance.get<PreferencService>()));
       default:
         return _errorRoute();
     }

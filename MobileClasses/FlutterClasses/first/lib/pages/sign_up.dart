@@ -63,7 +63,7 @@ class _SignUpState extends State<Signup> {
                   hintText: "Username",
                   controller: _usernameController,
                   validator: (String? value) {
-                    if (value == null || value.length < 5) {
+                    if (value == null || value.length < 6) {
                       return "Please enter more than 5 characters";
                     }
                     return null;
@@ -120,7 +120,7 @@ class _SignUpState extends State<Signup> {
                 ),
                 TextButton(
                     onPressed: () {
-                      Navigator.of(context).pushNamed('/sign-in');
+                      Navigator.of(context).pushNamed('/signin');
                     },
                     child: const Text(
                       "Sign in",
