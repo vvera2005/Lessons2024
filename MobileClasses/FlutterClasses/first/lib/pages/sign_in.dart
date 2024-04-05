@@ -1,12 +1,12 @@
 import 'package:first/button_widget.dart';
 import 'package:first/db/preferences.dart';
+import 'package:first/state/profile_data_states.dart';
 import 'package:first/text_field_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class Signin extends StatefulWidget {
-  const Signin(this.preferences, {super.key});
-  final PreferencService preferences;
+  const Signin({super.key});
   @override
   State<Signin> createState() => _SigninState();
 }
@@ -14,19 +14,19 @@ class Signin extends StatefulWidget {
 class _SigninState extends State<Signin> {
   Color color = Colors.white;
   bool darkMode = false;
-  String? username;
-  String? passward;
+  UserState? userstate;
+  // String? username;
+  // String? passward;
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   @override
   void initState() {
-    username = widget.preferences.getUsername();
-    passward = widget.preferences.getPassward();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    userstate = UserState.of(context);
     return Scaffold(
       backgroundColor: color,
       appBar: AppBar(
@@ -50,7 +50,7 @@ class _SigninState extends State<Signin> {
                     hintText: "Username",
                     controller: _usernameController,
                     validator: (String? value) {
-                      if (value != username) {
+                      if (value != userstate?.model.username) {
                         return "Invalid username";
                       }
                       return null;
@@ -64,7 +64,7 @@ class _SigninState extends State<Signin> {
                     obscureText: true,
                     controller: _passwordController,
                     validator: (String? value) {
-                      if (value != passward) {
+                      if (value != userstate?.model.password) {
                         return "Invalis password";
                       }
                       return null;
@@ -87,8 +87,10 @@ class _SigninState extends State<Signin> {
                   ),
                   ButtonWidget(
                     monTap: () {
-                      if (_usernameController.text == username &&
-                          _passwordController.text == passward) {
+                      if (_usernameController.text ==
+                              userstate?.model.username &&
+                          _passwordController.text ==
+                              userstate?.model.password) {
                         Navigator.of(context).pushNamed('/profile');
                       }
                     },

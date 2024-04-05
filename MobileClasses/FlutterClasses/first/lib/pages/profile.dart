@@ -1,5 +1,6 @@
 import 'package:first/button_widget.dart';
 import 'package:first/db/preferences.dart';
+import 'package:first/state/profile_data_states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -11,20 +12,22 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
-  late String username;
-  late String phoneNumber;
-  late String email;
+  // late String username;
+  // late String phoneNumber;
+  // late String email;
+  UserState? userState;
   @override
   void initState() {
-    username = widget.preferences.getUsername() ?? "Username";
-    email = widget.preferences.getEmail() ?? "test@mail.ru";
-    phoneNumber = widget.preferences.getPhoneNumber() ?? "+37499999999";
+    // username = widget.preferences.getUsername() ?? "Username";
+    // email = widget.preferences.getEmail() ?? "test@mail.ru";
+    // phoneNumber = widget.preferences.getPhoneNumber() ?? "+37499999999";
 
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    userState = UserState.of(context);
     return Scaffold(
       body: Center(
         child: SingleChildScrollView(
@@ -40,7 +43,7 @@ class _ProfileState extends State<Profile> {
                     const SizedBox(
                       height: 12,
                     ),
-                    Text(username,
+                    Text(userState?.model.username ?? "",
                         style: const TextStyle(
                             color: Color(0xff525464), fontSize: 24)),
                     Row(
@@ -127,7 +130,7 @@ class _ProfileState extends State<Profile> {
                                   style: const TextStyle(
                                     color: Color(0xffFFFFFF),
                                   )),
-                              Text(phoneNumber,
+                              Text(userState?.model.phoneNumber ?? "",
                                   style: const TextStyle(
                                     color: Color(0xffFFFFFF),
                                   )),
@@ -164,7 +167,7 @@ class _ProfileState extends State<Profile> {
                                   style: TextStyle(
                                     color: Color(0xffFFFFFF),
                                   )),
-                              Text(email,
+                              Text(userState?.model.email ?? "",
                                   style: const TextStyle(
                                     color: Color(0xffFFFFFF),
                                   )),

@@ -1,7 +1,3 @@
-// ignore_for_file: use_build_context_synchronously
-
-import 'dart:ffi';
-
 import 'package:first/button_widget.dart';
 import 'package:first/db/preferences.dart';
 import 'package:first/text_field_widget.dart';

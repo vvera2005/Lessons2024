@@ -10,8 +10,7 @@ class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case '/signin':
-        return MaterialPageRoute(
-            builder: (_) => Signin(GetIt.instance.get<PreferencService>()));
+        return MaterialPageRoute(builder: (_) => Signin());
       case '/signup':
         return MaterialPageRoute(
             builder: (_) => Signup(GetIt.instance.get<PreferencService>()));

@@ -25,6 +25,7 @@ class ButtonWidget extends StatelessWidget {
       child: Container(
         height: height,
         width: weight,
+        key: _globalKey,
         decoration: BoxDecoration(color: backgroundcolor),
         child: Center(
           child: Text(hintext,
